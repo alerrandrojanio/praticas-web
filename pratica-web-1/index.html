@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="pagina">
+        <header>
+            <img src="logo.png">
+        </header>
+        <div>
+            <h3>INSERIR ANÚNCIO</h3>
+        </div>
+
+        <div id="campos">
+            <form onsubmit="event.preventDefault();onFormSubmit()">
+
+                <div class="campo-entrada">
+                    <label for="titulo">TÍTULO</label>
+                    <input type="text" name="titulo" id="titulo" required>
+                </div>
+
+                <div class="campo-entrada">
+                    <label for="titulo">DESCRIÇÃO</label>
+                    <input type="text" name="descricao" id="descricao" required>
+                </div>
+
+                <div class="campo-entrada">
+                    <label for="titulo">QUARTOS</label>
+                    <input type="number" name="quartos" id="quartos" required>
+                </div>
+
+                <div class="campo-entrada">
+                    <label for="titulo">VAGAS DE GARAGEM</label>
+                    <input type="number" name="vagas-garagem" id="vagas-garagem" required>
+                </div>
+
+                <div class="campo-entrada">
+                    <label for="titulo">ÁREA DO TERRENO</label>
+                    <input type="text" name="area-terreno" id="area-terreno" required>
+                </div>
+
+                <div class="campo-entrada">
+                    <label for="titulo">ÁREA CONSTRUÍDA</label>
+                    <input type="text" name="area-construida" id="area-construida" required>
+                </div>
+
+                <div class="campo-entrada">
+                    <label for="titulo">LOCALIDADE</label>
+                    <input type="text" name="localidade" id="localidade" required>
+                </div>
+
+                <div class="campo-entrada">
+                    <label for="titulo">PREÇO</label>
+                    <input type="text" name="preco" id="preco" required>
+                </div>
+
+                <div class="campo-entrada">
+                    <label for="titulo">IMAGEM</label>
+                    <input type="text" name="imagem" id="imagem" required>
+                </div>
+
+                <footer id="botoes">
+                    <div>
+                        <button class="button button-efect" type="reset">LIMPAR</button>
+                        <button class="button button-efect" type="submit">INSERIR</button>
+                    </div>
+
+                </footer>
+
+            </form>
+
+        </div>
+        <div id="tituloLista">
+            <h3>LISTA DE ANÚNCIOS</h3>
+        </div>
+        <div id="lista">
+            <ul>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>

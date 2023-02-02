@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="pagina" class="pagina">
+        <header class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="index.html">
+                <img src="logo.png" class="img-fluid w-75">
+            </a>
+        </header>
+        <br>
+        <div id="campos" class="container">
+            <h3 class="display-4 text-muted">INSERIR ANÚNCIO</h3>
+            <hr>
+            <div>
+
+                <div class="form-group">
+                    <label for="titulo">TÍTULO</label>
+                    <input class="form-control" type="text" name="titulo" id="titulo" v-model="titulo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="titulo">DESCRIÇÃO</label>
+                    <input class="form-control" type="text" name="descricao" id="descricao" v-model="descricao" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="titulo">QUARTOS</label>
+                    <input class="form-control" type="number" name="quartos" id="quartos" v-model="quartos" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="titulo">VAGAS DE GARAGEM</label>
+                    <input class="form-control" type="number" name="vagas-garagem" id="vagas-garagem" v-model="vagas_garagem" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="titulo">ÁREA DO TERRENO</label>
+                    <input class="form-control" type="text" name="area-terreno" id="area-terreno" v-model="area_terreno" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="titulo">ÁREA CONSTRUÍDA</label>
+                    <input class="form-control" type="text" name="area-construida" id="area-construida" v-model="area_construida" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="titulo">LOCALIDADE</label>
+                    <input class="form-control" type="text" name="localidade" id="localidade" v-model="localidade" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="titulo">PREÇO</label>
+                    <input class="form-control" type="text" name="preco" id="preco" v-model="preco" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="titulo">IMAGEM</label>
+                    <input class="form-control" type="text" name="imagem" id="imagem" v-model="imagem" required>
+                </div>
+                <div class="form-group">
+                        <button class="btn btn-danger" type="reset" @click="limpar()">LIMPAR</button>
+                        <button class="btn btn-success" @click="adicionar()">INSERIR</button>
+                        <button class="btn btn-success" @click="mostrar()">MOSTRAR</button>
+                </div>
+            </div>
+
+        </div>
+        <div id="tituloLista" class="container">
+            <h3 class="display-4 text-muted">LISTA DE ANÚNCIOS</h3>
+            <hr>
+            <div id="lista" >
+                    <p> {{titulo}} </p>
+                    <p> {{descricao}} </p>
+                    <p> {{quartos}} </p>
+                    <p> {{vagas_garagem}} </p>
+                    <p> {{area_terreno}} </p>
+                    <p> {{area_construida}} </p>
+                    <p> {{localidade}} </p>
+                    <p> {{imagem}} </p>
+            </div> 
+        </div>
+    </div>
+
+   
+    <script>
+        const Lista = {
+            data() {
+                return {
+                    titulo: '',
+                    descricao:'',
+                    quartos:'',
+                    vagas_garagem: '',
+                    area_terreno: '',
+                    area_construida: '',
+                    localidade:'',
+                    preco: '',
+                    imagem:'',
+                    
+                }
+            },
+            methods: {
+                limpar(){
+                    this.titulo =''
+                    this.descricao =''
+                    this.quartos =''
+                    this.vagas_garagem =''
+                    this.area_terreno = ''
+                    this.area_construida = ''
+                    this.localidade = ''
+                    this.preco = ''
+                    this.imagem = ''
+                },
+
+                adicionar(){
+                    let listas = {}
+
+                    if(this.titulo === '' ||this.descricao ===''||this.quartos ===''||this.vagas_garagem ===''||this.area_terreno ===''
+                        ||this.area_construida ===''||this.localidade ===''||this.preco ===''){
+                        alert('Campos Incompletos!')
+                    }
+                    else if(this.quartos < 0 || this.vagas_garagem < 0 || this.vagas_garagem < 0 || this.area_terreno < 0){
+                        alert('Campos não podem ser menores que 0!')
+                    }
+                    else{
+                        listas.titulo= this.titulo
+                        listas.descricao = this.descricao
+                        listas.quartos = this.quartos
+                        listas.vagas_garagem = this.vagas_garagem
+                        listas.area_terreno = this.area_terreno
+                        listas.area_construida = this.area_construida
+                        listas.localidade = this.localidade
+                        listas.preco = this.preco
+                        listas.imagem = this.imagem
+
+                        let myJSON = JSON.stringify(listas)
+                        localStorage.setItem('listaJSON',myJSON)
+                    }
+                },
+                mostrar(){
+                    
+                    let dados = localStorage.getItem('listaJSON')
+                    let obj = JSON.parse(dados)
+                    var campoImg = document.createElement('img')
+                    campoImg.classList.add('w-25')
+                    campoImg.src = obj.imagem
+                    
+
+                    var lista = document.getElementById('lista')
+                    lista.innerHTML =
+                        "TÍTULO: " + obj.titulo + "<br>" +
+                        "DESCRIÇÃO: " + obj.descricao + "<br>" +
+                        "QUARTOS: " + obj.quartos + " <br>" +
+                        "VAGAS DE GARAGEM: " + obj.vagas_garagem + "<br>" +
+                        "ÁREA DO TERRENO: " + obj.area_terreno + " m²" + "<br>" +
+                        "ÁREA CONSTRUIDA: " + obj.area_construida + " m²" + "<br>" +
+                        "LOCALIDADE: " + obj.localidade + "<br>" + 
+                        "PREÇO: " + obj.preco + "<br>"
+                            
+                    lista.appendChild(campoImg)
+
+                },
+            },
+
+           
+        }
+        Vue.createApp(Lista).mount('#pagina')
+    </script>
+
+</body>
+</html>
